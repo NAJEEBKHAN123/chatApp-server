@@ -40,6 +40,10 @@ app.get('/', (req, res) =>{
 app.use('/api/auth', authRoutes)
 app.use('/api/messages', messageRoutes)
 
+app.get('/get', (req, res) => {
+    res.send("This is a get request")
+});
+
 // if(process.env.NODE_ENV === "production"){
 //     app.use(express.static(path.join(__dirname, "../frontend/dist")))
 
