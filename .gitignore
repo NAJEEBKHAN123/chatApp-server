@@ -1,0 +1,12 @@
+# Environment variables
+.env
+
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+
+# Optional: Ignore Mac and VS Code settings
+.DS_Store
+.vscode/
