@@ -16,14 +16,25 @@ dotenv.config()
 DBconnection()
 
 //middleware
-app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true,
-}
-    
+const allowedOrigins = [
+  "http://localhost:5173", // local dev frontend
+  "https://chatapp-client-alpha-two.vercel.app" // deployed frontend
+];
 
-));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps, curl, postman)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" })); // Increase payload limit
